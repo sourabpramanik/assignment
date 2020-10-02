@@ -9,12 +9,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: "#f6f7f7",
+    backgroundColor: "#f6f7f700"
   },
   gridList: {
     width: 1000,
-    height: "auto",
-  },
+    height: "auto"
+  }
 }));
 
 export default function ImageGridList(props) {
@@ -22,7 +22,12 @@ export default function ImageGridList(props) {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={160} className={classes.gridList} cols={6}>
+      <GridList
+        cellHeight={300}
+        spacing={12}
+        className={classes.gridList}
+        cols={6}
+      >
         {props.images.map((tile) => (
           <GridListTile key={tile.urls.small} cols={tile.cols || 2}>
             <img src={tile.urls.regular} alt={tile.title} />
