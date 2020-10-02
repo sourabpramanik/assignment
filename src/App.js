@@ -13,11 +13,19 @@ class App extends Component {
       isLoaded: false,
       query: "Random Images",
       active: "Random Images",
+      url: ""
     };
   }
 
   componentDidMount() {
     this.imageSearch();
+    axios
+      .get(
+        `https://api.nasa.gov/planetary/apod?api_key=ubTNhbfztJyZsy5OOgfH1W37HeqXpIG7CxbT6oko`
+      )
+      .then((response) => {
+        this.setState({ url: response.data.hdurl });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -57,7 +65,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div
+        style={{
+          backgroundImage: "url(" + this.state.url + ")",
+          backgroundPosition: "center",
+          backgroundSize: "100%",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed"
+        }}
+        className="App"
+      >
         <h1 className="title">UNSPLASH</h1>
         <div className="title">
           <Button onClick={() => this.onCollectionSubmit(1580860)}>
